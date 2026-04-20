@@ -35,7 +35,7 @@ public class IniciarRiegoInteractor implements IniciarRiegoUseCase {
         
         
         if(!seguridadHidrica.puedeRegar(0)) {
-            throw new RunTimeException("TANQUE BAJO");
+               System.out.println("ERROR");
             
         }
         

@@ -37,7 +37,7 @@ public class Esp32SerialAdapter implements SensorPort {
     
     @Override
     public double obtenerNivelTanque() {
-        throw new Unsupporte    dOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 0.0;
     }
     
 }
