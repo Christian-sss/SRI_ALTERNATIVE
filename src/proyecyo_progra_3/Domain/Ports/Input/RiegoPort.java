@@ -8,7 +8,7 @@ package proyecyo_progra_3.Domain.Ports.Input;
  *
  * @author Usuario
  */
-public interface ActuadorPort {
+public interface RiegoPort {
     
     
     void iniciarRiego();

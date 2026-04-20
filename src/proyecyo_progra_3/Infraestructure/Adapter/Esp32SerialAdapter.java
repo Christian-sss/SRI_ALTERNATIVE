@@ -5,27 +5,39 @@
 package proyecyo_progra_3.Infraestructure.Adapter;
 
 import proyecyo_progra_3.Domain.Ports.Input.SensorPort;
-import proyecyo_progra_3.Domain.Ports.Input.ActuadorPort;
+import proyecyo_progra_3.Domain.Ports.Input.RiegoPort;
 
 /**
  *
  * @author Usuario
  */
-public class Esp32SerialAdapter implements SensorPort, ActuadorPort {
 
+
+import com.fazecast.jSerialComm.SerialPort;
+
+
+
+public class Esp32SerialAdapter implements SensorPort {
+
+    
+   private SerialPort serial;
+   
+   
+   public Esp32SerialAdapter(SerialPort serial) {
+       this.serial = serial;
+   }
+    
     @Override
     public double obtenerHumedad() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+   
+    
+    
     @Override
-    public void iniciarRiego() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void detenerRiego() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double obtenerNivelTanque() {
+        throw new Unsupporte    dOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
