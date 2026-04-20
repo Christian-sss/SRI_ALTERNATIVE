@@ -155,7 +155,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
         
-        
+        //PRUEBA DE LUIS
         menuFrm();
         
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
