@@ -4,6 +4,8 @@
  */
 package proyecyo_progra_3.Domain.Service;
 
+import proyecyo_progra_3.Domain.Model.TanqueAgua;
+
 /**
  *
  * @author Usuario
@@ -11,17 +13,28 @@ package proyecyo_progra_3.Domain.Service;
 public class SeguridadHidrica {
     
     
-    private final Double NIVEL_MINIMO = 10.0;
+    private static final Double NIVEL_MINIMO_CM = 10.0;
     
     
-    public boolean puedeRegar(double nivel) {
+    public boolean puedeRegar(TanqueAgua tanque) {
         
-        if(nivel < NIVEL_MINIMO) {
+        
+        if(tanque != null && tanque.tieneAgua()) {
             return true;
         }
+
         
         return false;
     }
+    
+    
+    
+    public boolean esMomentoCritico(TanqueAgua tanque) {
+        return tanque != null && !tanque.tieneAgua();
+    }
+    
+        
+    
     
     
 }

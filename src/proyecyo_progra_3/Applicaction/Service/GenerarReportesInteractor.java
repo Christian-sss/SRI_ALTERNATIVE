@@ -8,6 +8,6 @@ package proyecyo_progra_3.Applicaction.Service;
  *
  * @author Usuario
  */
-public class DetectarTanqueVacioInteractor {
+public class GenerarReportesInteractor {
     
 }

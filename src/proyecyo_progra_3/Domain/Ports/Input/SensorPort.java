@@ -13,4 +13,7 @@ public interface SensorPort {
     double obtenerHumedad();
     double obtenerNivelTanque();
     
+    
+    void actualizarHumedad(double humedad);
+    void actualizarNivelTanque(double nivel);
 }
