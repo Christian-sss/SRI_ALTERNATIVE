@@ -4,6 +4,7 @@
  */
 package proyecyo_progra_3.Domain.Service;
 
+import proyecyo_progra_3.Domain.ENUMS.EstadoSistema;
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
 
 /**
@@ -13,10 +14,31 @@ import proyecyo_progra_3.Domain.Model.TanqueAgua;
 public class SeguridadHidrica {
 
 
+
+
+
     public boolean puedeRegar(TanqueAgua tanque) {
         return tanque.hayAgua() && tanque.getHumedad() < 30;
     }
-    
-    
+
+
+    public void evaluarEstado(TanqueAgua tanque) {
+
+        if (!tanque.hayAgua()) {
+            tanque.setEstadoActual(EstadoSistema.BLOQUEADO_SIN_AGUA);
+
+            tanque.desactivarBomba();
+            return;
+        }
+
+
+        if (tanque.sueloSeco()) {
+            tanque.setEstadoActual(EstadoSistema.REGANDO);
+            return;
+        }
+
+
+        tanque.setEstadoActual(EstadoSistema.ESPERA);
+    }
     
 }

@@ -4,10 +4,9 @@
  */
 package proyecyo_progra_3.Domain.Service;
 
-import com.fazecast.jSerialComm.SerialPort;
+
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
-import proyecyo_progra_3.Infraestructure.Adapter.Esp32SerialAdapter;
-import proyecyo_progra_3.Infraestructure.Adapter.Esp32SerialRiego;
+
 
 /**
  *

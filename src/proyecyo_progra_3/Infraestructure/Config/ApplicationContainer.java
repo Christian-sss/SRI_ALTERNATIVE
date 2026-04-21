@@ -44,7 +44,7 @@ public class ApplicationContainer {
         this.seguridad = new SeguridadHidrica();
         this.connectionManager = new Esp32ConnectionManager();
         this.service = new SistemaRiegoService(seguridad);
-        this.serialAdapter = new Esp32SerialAdapter(tanque);
+        this.serialAdapter = new Esp32SerialAdapter(tanque,seguridad);
         this.riegoPort = new Esp32SerialRiego(connectionManager);
         
     }

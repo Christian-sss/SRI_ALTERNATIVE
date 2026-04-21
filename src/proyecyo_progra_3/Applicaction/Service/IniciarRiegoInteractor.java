@@ -4,6 +4,7 @@
  */
 package proyecyo_progra_3.Applicaction.Service;
 
+import proyecyo_progra_3.Domain.ENUMS.EstadoSistema;
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
 import proyecyo_progra_3.Domain.Ports.Output.IniciarRiegoUseCase;
 
@@ -30,28 +31,20 @@ public class IniciarRiegoInteractor implements IniciarRiegoUseCase {
 
     public String ejecutar() {
 
-        if (!service.puedeIniciarRiego(tanque)) {
-            return "No se puede iniciar riego";
+
+
+        if (tanque.getEstadoActual() == EstadoSistema.BLOQUEADO_SIN_AGUA) {
+            return "ACCIÓN DENEGADA: El tanque no tiene agua suficiente para regar.";
         }
-
-
 
         riegoPort.enviarComando(1);
 
         service.activarRiego(tanque);
+        tanque.setEstadoActual(EstadoSistema.REGANDO);
 
         return "Riego iniciado";
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 }

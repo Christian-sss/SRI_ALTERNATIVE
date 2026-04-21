@@ -32,6 +32,9 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
      */
     public FrmPanelRiegoManual() {
         initComponents();
+        
+        btnIniciarRiegoManual.setEnabled(false);
+        btnDetenerRiegoManual.setEnabled(false);
     }
 
     /**
@@ -127,7 +130,7 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         
         menu.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnVolverAlMenuActionPerformed
+    }
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -152,7 +155,14 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "¡Conectado exitosamente al ESP32!");
         
         
-    }//GEN-LAST:event_btnConectarActionPerformed
+        btnIniciarRiegoManual.setEnabled(true);
+        btnDetenerRiegoManual.setEnabled(true);
+        
+
+        btnConectar.setEnabled(false);
+        btnConectar.setText("Conectado");
+        
+    }                                           
 
     private void btnIniciarRiegoManualActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -163,7 +173,7 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, resultado);
         
         
-    }//GEN-LAST:event_btnIniciarRiegoManualActionPerformed
+    }                                                     
 
     private void btnDetenerRiegoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerRiegoManualActionPerformed
         // TODO add your handling code here:

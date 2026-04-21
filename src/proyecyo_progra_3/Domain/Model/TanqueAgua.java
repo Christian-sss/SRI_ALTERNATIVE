@@ -5,8 +5,9 @@
 package proyecyo_progra_3.Domain.Model;
 
 
-public class TanqueAgua {
+import proyecyo_progra_3.Domain.ENUMS.EstadoSistema;
 
+public class TanqueAgua {
     private int humedad;
     private double distancia;
     private boolean bombaActiva;
@@ -16,14 +17,10 @@ public class TanqueAgua {
     private static final double UMBRAL_LLENO = 7.0;
     private static final double UMBRAL_VACIO = 18.0;
 
-
+    private EstadoSistema estadoActual = EstadoSistema.ESPERA;
 
     public void actualizarDatos(int humedad, double distancia) {
         this.humedad = humedad;
-        this.distancia = distancia;
-    }
-
-    public void setDistancia(double distancia) {
         this.distancia = distancia;
     }
 
@@ -48,18 +45,18 @@ public class TanqueAgua {
             return "VACIO";
         }
     }
+
     public boolean debeRegar() {
         return sueloSeco() && hayAgua();
     }
 
+    public EstadoSistema getEstadoActual() {
+        return estadoActual;
+    }
 
-
-
-    /*
-
-    Aqui los metodos para la bomba.
-
-     */
+    public void setEstadoActual(EstadoSistema estadoActual) {
+        this.estadoActual = estadoActual;
+    }
 
     public void activarBomba() {
         this.bombaActiva = true;
@@ -72,10 +69,6 @@ public class TanqueAgua {
     public boolean isBombaActiva() {
         return bombaActiva;
     }
-
-    // =========================
-    // GETTERS (necesarios)
-    // =========================
 
     public int getHumedad() {
         return humedad;

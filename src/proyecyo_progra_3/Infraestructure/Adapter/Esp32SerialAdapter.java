@@ -20,7 +20,7 @@ import com.fazecast.jSerialComm.SerialPortEvent;
 import java.util.function.Consumer;
 
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
-
+import proyecyo_progra_3.Domain.Service.SeguridadHidrica;
 
 
 public class Esp32SerialAdapter  {
@@ -30,9 +30,11 @@ public class Esp32SerialAdapter  {
     private TanqueAgua tanque;
     private Consumer<TanqueAgua> onDataReceived;
     private StringBuilder bufferRecepcion = new StringBuilder();
+    private SeguridadHidrica seguridadHidrica;
 
-    public Esp32SerialAdapter(TanqueAgua tanque) {
+    public Esp32SerialAdapter(TanqueAgua tanque, SeguridadHidrica seguridadHidrica) {
         this.tanque = tanque;
+        this.seguridadHidrica = seguridadHidrica;
     }
 
 
@@ -104,7 +106,7 @@ public class Esp32SerialAdapter  {
 
 
             tanque.actualizarDatos(humedad, distancia);
-
+            seguridadHidrica.evaluarEstado(tanque);
             // Paa Notificar (UI, logs, etc.)
             if (onDataReceived != null) {
                 onDataReceived.accept(tanque);
