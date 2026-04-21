@@ -5,7 +5,10 @@
 package proyecyo_progra_3.Applicaction.Service;
 
 
-import proyecyo_progra_3.Domain.Ports.Input.RiegoPortUseCase;
+import proyecyo_progra_3.Domain.Model.TanqueAgua;
+import proyecyo_progra_3.Domain.Ports.Output.RiegoPort;
+import proyecyo_progra_3.Domain.Service.SeguridadHidrica;
+import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 
 /**
  *
@@ -14,20 +17,35 @@ import proyecyo_progra_3.Domain.Ports.Input.RiegoPortUseCase;
 public class DetenerRiegoInteractor {
     
     
-    private final RiegoPortUseCase port;
+    private final RiegoPort port;
+    private final TanqueAgua tanque;
+    private final SistemaRiegoService service;
+
+    public DetenerRiegoInteractor(RiegoPort port, TanqueAgua tanque, SistemaRiegoService service) {
+        this.port = port;
+        this.tanque = tanque;
+        this.service =service;
+    }
+    
 
     
-    
-    public DetenerRiegoInteractor(RiegoPortUseCase port) {
-        this.port = port;
+    public String ejecutar() {
+
+
+            if (!tanque.isBombaActiva()) {
+                return "La bomba ya está detenida";
+            }
+        
+
+        port.enviarComando(0);
+
+        service.detenerRiego(tanque);
+
+
+
+        return "Riego detenido correctamente";
     }
-    
-    
-    
-    public void ejecutar() {
-        port.detenerRiego();
-    }
-    
+
     
     
     

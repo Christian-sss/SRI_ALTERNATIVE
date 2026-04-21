@@ -4,6 +4,8 @@
  */
 package proyecyo_progra_3.Presentation;
 
+import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
+
 /**
  *
  * @author Usuario
@@ -15,9 +17,17 @@ public class FrmMenu extends javax.swing.JFrame {
     /**
      * Creates new form FrmMenu
      */
+    
+
+    
     public FrmMenu() {
         initComponents();
     }
+   
+    
+    
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,8 +112,7 @@ public class FrmMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         FrmPanelRiego frm = new FrmPanelRiego();
         frm.setVisible(true);
-        this.setVisible(false);
-        
+        this.dispose();
         
     }//GEN-LAST:event_btnRiegoAutomaticoActionPerformed
 

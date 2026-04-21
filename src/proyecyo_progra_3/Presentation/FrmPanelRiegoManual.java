@@ -4,6 +4,12 @@
  */
 package proyecyo_progra_3.Presentation;
 
+import javax.swing.JOptionPane;
+import proyecyo_progra_3.Applicaction.Service.ConectarESP32Interactor;
+import proyecyo_progra_3.Applicaction.Service.DetenerRiegoInteractor;
+import proyecyo_progra_3.Applicaction.Service.IniciarRiegoInteractor;
+import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
+
 /**
  *
  * @author Usuario
@@ -11,7 +17,16 @@ package proyecyo_progra_3.Presentation;
 public class FrmPanelRiegoManual extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPanelRiegoManual.class.getName());
+    
+    
+    private final ApplicationContainer appContainer = ApplicationContainer.getInstance();
+    private final IniciarRiegoInteractor iniciarRiego = appContainer.getIniciarRiegoInteractor();
+    private final DetenerRiegoInteractor detenerRiego = appContainer.getDetenerRiegoInteractor();
+    private final ConectarESP32Interactor conectarESP32 = appContainer.getConectarESP32Interactor();
+    
 
+    
+    
     /**
      * Creates new form FrmPanelRiegoManual
      */
@@ -33,6 +48,7 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         btnDetenerRiegoManual = new javax.swing.JButton();
         btnIniciarRiegoManual = new javax.swing.JButton();
         btnVolverAlMenu = new javax.swing.JButton();
+        btnConectar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,11 +57,16 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Riego Manual");
 
         btnDetenerRiegoManual.setText("Detener Riego");
+        btnDetenerRiegoManual.addActionListener(this::btnDetenerRiegoManualActionPerformed);
 
         btnIniciarRiegoManual.setText("Iniciar Riego");
+        btnIniciarRiegoManual.addActionListener(this::btnIniciarRiegoManualActionPerformed);
 
         btnVolverAlMenu.setText("Volver al Menú");
         btnVolverAlMenu.addActionListener(this::btnVolverAlMenuActionPerformed);
+
+        btnConectar.setText("Conectar");
+        btnConectar.addActionListener(this::btnConectarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,7 +91,10 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
                         .addGap(232, 232, 232))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnVolverAlMenu)
-                        .addGap(101, 101, 101))))
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnConectar)
+                        .addGap(82, 82, 82))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +103,9 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel2)
-                .addGap(179, 179, 179)
+                .addGap(5, 5, 5)
+                .addComponent(btnConectar)
+                .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDetenerRiegoManual)
                     .addComponent(btnIniciarRiegoManual))
@@ -102,6 +128,51 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverAlMenuActionPerformed
+
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+
+        String puerto = JOptionPane.showInputDialog("Indique el puerto (Ej: COM3):");
+
+
+        if (puerto == null || puerto.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Operación cancelada o puerto inválido.");
+            return;
+        }
+
+        boolean conectado = conectarESP32.ejecutar(puerto);
+
+
+
+        if (!conectado) {
+            JOptionPane.showMessageDialog(this, "Error: No se pudo abrir el puerto " + puerto + ". Verifica que no esté en uso.");
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "¡Conectado exitosamente al ESP32!");
+        
+        
+    }//GEN-LAST:event_btnConectarActionPerformed
+
+    private void btnIniciarRiegoManualActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        
+        
+        String resultado = iniciarRiego.ejecutar();
+        
+        JOptionPane.showMessageDialog(this, resultado);
+        
+        
+    }//GEN-LAST:event_btnIniciarRiegoManualActionPerformed
+
+    private void btnDetenerRiegoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerRiegoManualActionPerformed
+        // TODO add your handling code here:
+        
+        
+        String resultado = detenerRiego.ejecutar();
+
+        JOptionPane.showMessageDialog(this, resultado);
+    }//GEN-LAST:event_btnDetenerRiegoManualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +200,7 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConectar;
     private javax.swing.JButton btnDetenerRiegoManual;
     private javax.swing.JButton btnIniciarRiegoManual;
     private javax.swing.JButton btnVolverAlMenu;

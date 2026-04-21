@@ -2,17 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package proyecyo_progra_3.Domain.Ports.Input;
+package proyecyo_progra_3.Domain.Ports.Output;
 
 /**
  *
  * @author Usuario
  */
-public interface RiegoPortUseCase {
-    
-    
-    void iniciarRiego();
-    void detenerRiego();
+public interface RiegoPort {
+
+    void enviarComando(int comando);
     
     
 }

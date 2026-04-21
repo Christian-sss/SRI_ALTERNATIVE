@@ -5,7 +5,6 @@
 package proyecyo_progra_3.Domain.Ports.Output;
 
 import java.util.function.Consumer;
-import proyecyo_progra_3.Domain.Model.EstadoSistema;
 
 /**
  *
@@ -13,9 +12,5 @@ import proyecyo_progra_3.Domain.Model.EstadoSistema;
  */
 public interface SerialPortOutput {
     
-    
-    
-    void enviarComando(String comando);
-    void agregarListener(Consumer<EstadoSistema> listener);
-    EstadoSistema getEstadoActual();
+
 }

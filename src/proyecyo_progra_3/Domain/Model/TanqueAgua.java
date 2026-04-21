@@ -4,63 +4,85 @@
  */
 package proyecyo_progra_3.Domain.Model;
 
-/**
- *
- * @author Usuario
- */
-
-
-
 
 public class TanqueAgua {
-    
-    
-    
-  private int humedadRaw;
-    private int humedadPorcentaje;
-    private int distanciaCm;
-    private String estadoTanque;
-    private String estadoRiego;
-    private boolean tieneAgua;
+
+    private int humedad;
+    private double distancia;
     private boolean bombaActiva;
-    
-    public TanqueAgua() {
-        this.estadoTanque = "DESCONOCIDO";
-        this.estadoRiego = "DESCONOCIDO";
-        this.tieneAgua = false;
+
+
+    private static final int HUMEDAD_MIN = 30;
+    private static final double UMBRAL_LLENO = 7.0;
+    private static final double UMBRAL_VACIO = 18.0;
+
+
+
+    public void actualizarDatos(int humedad, double distancia) {
+        this.humedad = humedad;
+        this.distancia = distancia;
+    }
+
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
+    }
+
+    public boolean sueloSeco() {
+        return humedad < HUMEDAD_MIN;
+    }
+
+    public boolean hayAgua() {
+        return distancia < UMBRAL_VACIO;
+    }
+
+    public boolean estaLleno() {
+        return distancia <= UMBRAL_LLENO;
+    }
+
+    public String estadoTanque() {
+        if (distancia <= UMBRAL_LLENO) {
+            return "LLENO";
+        } else if (distancia < UMBRAL_VACIO) {
+            return "MEDIO";
+        } else {
+            return "VACIO";
+        }
+    }
+    public boolean debeRegar() {
+        return sueloSeco() && hayAgua();
+    }
+
+
+
+
+    /*
+
+    Aqui los metodos para la bomba.
+
+     */
+
+    public void activarBomba() {
+        this.bombaActiva = true;
+    }
+
+    public void desactivarBomba() {
         this.bombaActiva = false;
     }
-    
 
-    public void setHumedadRaw(int raw) { this.humedadRaw = raw; }
-    public void setHumedadPorcentaje(int porcentaje) { 
-        this.humedadPorcentaje = porcentaje; 
+    public boolean isBombaActiva() {
+        return bombaActiva;
     }
-    public void setDistanciaCm(int distancia) { this.distanciaCm = distancia; }
-    
-    public void setEstadoTanque(String estado) {
-        this.estadoTanque = estado;
-        this.tieneAgua = !estado.equals("VACÍO");
+
+    // =========================
+    // GETTERS (necesarios)
+    // =========================
+
+    public int getHumedad() {
+        return humedad;
     }
-    
-    public void setEstadoRiego(String estado) {
-        this.estadoRiego = estado;
-        this.bombaActiva = estado.contains("REGANDO");
+
+    public double getDistancia() {
+        return distancia;
     }
-    
-    public int getHumedadPorcentaje() { return humedadPorcentaje; }
-    public int getDistanciaCm() { return distanciaCm; }
-    public String getEstadoTanque() { return estadoTanque; }
-    public String getEstadoRiego() { return estadoRiego; }
-    public boolean tieneAgua() { return tieneAgua; }
-    public boolean isBombaActiva() { return bombaActiva; }
-    
-    
-    
-    @Override
-    public String toString() {
-        return String.format("Tanque: %s | Humedad: %d%% | %s", 
-            estadoTanque, humedadPorcentaje, estadoRiego);
-    }
-    
+
 }

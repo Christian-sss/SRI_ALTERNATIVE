@@ -49,6 +49,10 @@
                       <Component id="btnVolverAlMenu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnConectar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -60,7 +64,9 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="btnConectar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnDetenerRiegoManual" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnIniciarRiegoManual" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -87,11 +93,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Detener Riego"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetenerRiegoManualActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnIniciarRiegoManual">
       <Properties>
         <Property name="text" type="java.lang.String" value="Iniciar Riego"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciarRiegoManualActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnVolverAlMenu">
       <Properties>
@@ -99,6 +111,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverAlMenuActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnConectar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Conectar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConectarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

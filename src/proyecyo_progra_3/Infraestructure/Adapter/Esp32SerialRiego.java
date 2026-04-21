@@ -11,62 +11,36 @@ package proyecyo_progra_3.Infraestructure.Adapter;
 
 
 import com.fazecast.jSerialComm.SerialPort;
-import proyecyo_progra_3.Domain.Ports.Input.RiegoPortUseCase;
+import proyecyo_progra_3.Domain.Ports.Output.RiegoPort;
+import proyecyo_progra_3.Infraestructure.Config.Esp32ConnectionManager;
 
 
-public class Esp32SerialRiego implements RiegoPortUseCase {
+public class Esp32SerialRiego implements RiegoPort {
     
+
+     private final int MODO_AUTOMATICO = 2;
+    private final Esp32ConnectionManager port;
     
-    private final int RIEGO_ON = 1;
-    private final int RIEGO_OFF = 0;
-    private final int MODO_AUTOMATICO = 2;
-    
-    private final SerialPort port;
-    
-    
-   
-    public Esp32SerialRiego(SerialPort port) {
-        this.port = port;
+    public Esp32SerialRiego(Esp32ConnectionManager connectionManager) {
+        this.port = connectionManager;
     }
     
-    
-    @Override
-    public void iniciarRiego() {
-        enviar(RIEGO_ON);
-        System.out.println("[JAVA] Comando ENCENDER (1) enviado");
-    }
 
     @Override
-    public void detenerRiego() {
-        enviar(RIEGO_OFF);
-        System.out.println("[JAVA] ?Comando APAGAR (0) enviado");
-    }
-    
-    
-    public void modoAutomatico() {
-        enviar(MODO_AUTOMATICO);
-        System.out.println("[JAVA] 🔄 Comando MODO AUTOMÁTICO (2) enviado");
-    }
-    
-    
-/*    
-    private void enviar(int comando) {
-        String cmd = comando + "\n";
-        byte[] data = cmd.getBytes();
-        port.writeBytes(data, data.length);
-    }
-
-*/
-    private void enviar(int comando) {
-        if (port != null && port.isOpen()) {
+    public void enviarComando(int comando) {
+        if (port != null && port.estaConectado()) {
             String cmd = comando + "\n";
             byte[] data = cmd.getBytes();
-            port.writeBytes(data, data.length);
+            port.escribirABytes(data);
         } else {
-            System.err.println("[JAVA] Error: Puerto no conectado");
+            System.err.println("Puerto no se logro conectar");
         }
     }
-    
-    
+
+
+    public void modoAutomatico() {
+        enviarComando(MODO_AUTOMATICO);
+        System.out.println("[JAVA] 🔄 Comando MODO AUTOMÁTICO (2) enviado");
+    }
     
 }

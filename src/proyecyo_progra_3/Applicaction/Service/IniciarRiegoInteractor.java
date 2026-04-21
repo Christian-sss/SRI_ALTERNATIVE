@@ -4,41 +4,44 @@
  */
 package proyecyo_progra_3.Applicaction.Service;
 
-import proyecyo_progra_3.Domain.Ports.Input.IniciarRiegoUseCase;
-import proyecyo_progra_3.Domain.Ports.Input.SensorPort;
-import proyecyo_progra_3.Domain.Service.SeguridadHidrica;
+import proyecyo_progra_3.Domain.Model.TanqueAgua;
+import proyecyo_progra_3.Domain.Ports.Output.IniciarRiegoUseCase;
 
-import proyecyo_progra_3.Domain.Ports.Input.RiegoPortUseCase;
+import proyecyo_progra_3.Domain.Ports.Output.RiegoPort;
+import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 
 /**
  *
  * @author Usuario
  */
 public class IniciarRiegoInteractor implements IniciarRiegoUseCase {
-    
-    private final RiegoPortUseCase port;
-    private final SeguridadHidrica seguridadHidrica;
-    private final SensorPort sensor;
-    
-    
-    
-    public IniciarRiegoInteractor(RiegoPortUseCase port, SeguridadHidrica sh,SensorPort sensor) {
-        this.port = port;
-        this.seguridadHidrica = sh;
-        this.sensor = sensor;
-        
+
+    private final SistemaRiegoService service;
+    private final RiegoPort riegoPort;
+    private final TanqueAgua tanque;
+
+    public IniciarRiegoInteractor(SistemaRiegoService service,
+                                  RiegoPort riegoPort,
+                                  TanqueAgua tanque) {
+        this.service = service;
+        this.riegoPort = riegoPort;
+        this.tanque = tanque;
     }
 
-    @Override
-    public void ejecutar() {
-        
-        var nivel = sensor.obtenerNivelTanque();
-        
- 
-        
-        
+    public String ejecutar() {
+
+        if (!service.puedeIniciarRiego(tanque)) {
+            return "No se puede iniciar riego";
+        }
+
+
+
+        riegoPort.enviarComando(1);
+
+        service.activarRiego(tanque);
+
+        return "Riego iniciado";
     }
-    
     
     
     

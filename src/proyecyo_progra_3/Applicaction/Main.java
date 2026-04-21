@@ -4,10 +4,16 @@
  */
 package proyecyo_progra_3.Applicaction;
 
+import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
+import proyecyo_progra_3.Presentation.FrmMenu;
+import proyecyo_progra_3.Presentation.FrmPanelRiego;
+
 /**
  *
  * @author Usuario
  */
 public class Main {
-    
+    public static void main(String[] args) {
+    }
+
 }

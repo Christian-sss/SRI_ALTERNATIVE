@@ -4,6 +4,8 @@
  */
 package proyecyo_progra_3.Presentation;
 
+import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
+
 /**
  *
  * @author Usuario
@@ -13,29 +15,13 @@ public class FrmLogin extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
 
     
-    
-    
+
     public FrmLogin() {
         initComponents();
     }
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -192,7 +178,11 @@ public class FrmLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmLogin().setVisible(true));
+
+                java.awt.EventQueue.invokeLater(() -> {
+                    // 2. Se lo pasamos al constructor correcto
+                    new FrmLogin().setVisible(true);
+              });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
