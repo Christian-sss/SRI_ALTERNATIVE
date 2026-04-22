@@ -15,22 +15,20 @@ import proyecyo_progra_3.Domain.Model.TanqueAgua;
 public class SistemaRiegoService {
 
 
-    private final SeguridadHidrica seguridad;
+    private final SeguridadHidricaService seguridad;
 
-    public SistemaRiegoService(SeguridadHidrica seguridad) {
+    public SistemaRiegoService(SeguridadHidricaService seguridad) {
         this.seguridad = seguridad;
     }
 
-    public boolean puedeIniciarRiego(TanqueAgua tanque) {
-        return seguridad.puedeRegar(tanque);
-    }
 
     public void activarRiego(TanqueAgua tanque) {
-        tanque.activarBomba();
+        if(seguridad.puedeRegar(tanque))
+            tanque.activarBomba();
     }
 
     public void detenerRiego(TanqueAgua tanque) {
         tanque.desactivarBomba();
     }
-    
+
 }

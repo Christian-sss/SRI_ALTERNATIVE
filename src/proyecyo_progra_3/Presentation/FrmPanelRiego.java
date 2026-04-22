@@ -7,7 +7,7 @@ package proyecyo_progra_3.Presentation;
 import javax.swing.*;
 
 import proyecyo_progra_3.Applicaction.Service.ConectarESP32Interactor;
-import proyecyo_progra_3.Applicaction.Service.IniciarRiegoInteractor;
+import proyecyo_progra_3.Domain.Ports.Input.IniciarRiegoUseCase;
 import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
 
@@ -26,7 +26,7 @@ public class FrmPanelRiego extends JFrame {
     private static final Logger logger = Logger.getLogger(FrmPanelRiego.class.getName());
     
     private final ApplicationContainer appContainer = ApplicationContainer.getInstance();
-    private final IniciarRiegoInteractor iniciarRiegoInteractor = appContainer.getIniciarRiegoInteractor();
+    private final IniciarRiegoUseCase iniciarRiego = appContainer.getIniciarRiegoInteractor();
     private final ConectarESP32Interactor conectarESP32 = appContainer.getConectarESP32Interactor();
 
 

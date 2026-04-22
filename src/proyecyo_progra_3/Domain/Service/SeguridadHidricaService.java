@@ -6,22 +6,23 @@ package proyecyo_progra_3.Domain.Service;
 
 import proyecyo_progra_3.Domain.ENUMS.EstadoSistema;
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
+import proyecyo_progra_3.Domain.Ports.Output.SeguridadHidrica;
 
 /**
  *
  * @author Usuario
  */
-public class SeguridadHidrica {
+public class SeguridadHidricaService implements SeguridadHidrica {
 
 
 
-
-
+    @Override
     public boolean puedeRegar(TanqueAgua tanque) {
         return tanque.hayAgua() && tanque.getHumedad() < 30;
     }
 
 
+    @Override
     public void evaluarEstado(TanqueAgua tanque) {
 
         if (!tanque.hayAgua()) {
@@ -40,5 +41,7 @@ public class SeguridadHidrica {
 
         tanque.setEstadoActual(EstadoSistema.ESPERA);
     }
-    
+
+
+
 }

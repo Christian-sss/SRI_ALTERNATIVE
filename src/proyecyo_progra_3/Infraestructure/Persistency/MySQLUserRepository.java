@@ -14,10 +14,6 @@ import proyecyo_progra_3.Domain.Ports.Output.UserRepository;
  */
 public class MySQLUserRepository implements UserRepository {
 
-    
-    
-    
-    
     @Override
     public void save() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

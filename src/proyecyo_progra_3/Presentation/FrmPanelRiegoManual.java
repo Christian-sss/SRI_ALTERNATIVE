@@ -6,8 +6,8 @@ package proyecyo_progra_3.Presentation;
 
 import javax.swing.JOptionPane;
 import proyecyo_progra_3.Applicaction.Service.ConectarESP32Interactor;
-import proyecyo_progra_3.Applicaction.Service.DetenerRiegoInteractor;
-import proyecyo_progra_3.Applicaction.Service.IniciarRiegoInteractor;
+import proyecyo_progra_3.Domain.Ports.Input.DetenerRiegoUseCase;
+import proyecyo_progra_3.Domain.Ports.Input.IniciarRiegoUseCase;
 import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
 
 /**
@@ -20,8 +20,8 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
     
     
     private final ApplicationContainer appContainer = ApplicationContainer.getInstance();
-    private final IniciarRiegoInteractor iniciarRiego = appContainer.getIniciarRiegoInteractor();
-    private final DetenerRiegoInteractor detenerRiego = appContainer.getDetenerRiegoInteractor();
+    private final IniciarRiegoUseCase iniciarRiego = appContainer.getIniciarRiegoInteractor();
+    private final DetenerRiegoUseCase detenerRiego = appContainer.getDetenerRiegoInteractor();
     private final ConectarESP32Interactor conectarESP32 = appContainer.getConectarESP32Interactor();
     
 
@@ -144,8 +144,6 @@ public class FrmPanelRiegoManual extends javax.swing.JFrame {
         }
 
         boolean conectado = conectarESP32.ejecutar(puerto);
-
-
 
         if (!conectado) {
             JOptionPane.showMessageDialog(this, "Error: No se pudo abrir el puerto " + puerto + ". Verifica que no esté en uso.");

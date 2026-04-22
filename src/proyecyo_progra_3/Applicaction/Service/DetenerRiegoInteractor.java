@@ -6,15 +6,15 @@ package proyecyo_progra_3.Applicaction.Service;
 
 
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
+import proyecyo_progra_3.Domain.Ports.Input.DetenerRiegoUseCase;
 import proyecyo_progra_3.Domain.Ports.Output.RiegoPort;
-import proyecyo_progra_3.Domain.Service.SeguridadHidrica;
 import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 
 /**
  *
  * @author Usuario
  */
-public class DetenerRiegoInteractor {
+public class DetenerRiegoInteractor implements DetenerRiegoUseCase {
     
     
     private final RiegoPort port;
@@ -28,7 +28,8 @@ public class DetenerRiegoInteractor {
     }
     
 
-    
+
+    @Override
     public String ejecutar() {
 
 

@@ -4,13 +4,14 @@
  */
 package proyecyo_progra_3.Infraestructure.Config;
 
-import com.fazecast.jSerialComm.SerialPort;
 import proyecyo_progra_3.Applicaction.Service.ConectarESP32Interactor;
 import proyecyo_progra_3.Applicaction.Service.DetenerRiegoInteractor;
 import proyecyo_progra_3.Applicaction.Service.IniciarRiegoInteractor;
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
+import proyecyo_progra_3.Domain.Ports.Input.DetenerRiegoUseCase;
+import proyecyo_progra_3.Domain.Ports.Input.IniciarRiegoUseCase;
 import proyecyo_progra_3.Domain.Ports.Output.RiegoPort;
-import proyecyo_progra_3.Domain.Service.SeguridadHidrica;
+import proyecyo_progra_3.Domain.Service.SeguridadHidricaService;
 import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 import proyecyo_progra_3.Infraestructure.Adapter.Esp32SerialAdapter;
 import proyecyo_progra_3.Infraestructure.Adapter.Esp32SerialRiego;
@@ -25,7 +26,7 @@ public class ApplicationContainer {
     private static ApplicationContainer instance;
     
     private final TanqueAgua tanque;
-    private final SeguridadHidrica seguridad;
+    private final SeguridadHidricaService seguridad;
     private final SistemaRiegoService service;
     private final Esp32ConnectionManager connectionManager;
     private final Esp32SerialAdapter serialAdapter;
@@ -41,7 +42,7 @@ public class ApplicationContainer {
     }
     private ApplicationContainer() {
         this.tanque  = new TanqueAgua();
-        this.seguridad = new SeguridadHidrica();
+        this.seguridad = new SeguridadHidricaService();
         this.connectionManager = new Esp32ConnectionManager();
         this.service = new SistemaRiegoService(seguridad);
         this.serialAdapter = new Esp32SerialAdapter(tanque,seguridad);
@@ -49,7 +50,7 @@ public class ApplicationContainer {
         
     }
     
-    public  IniciarRiegoInteractor getIniciarRiegoInteractor() {
+    public IniciarRiegoUseCase getIniciarRiegoInteractor() {
         return new IniciarRiegoInteractor(service, riegoPort, tanque);
     }
 
@@ -58,7 +59,7 @@ public class ApplicationContainer {
     }
 
     
-    public DetenerRiegoInteractor getDetenerRiegoInteractor() {
+    public DetenerRiegoUseCase getDetenerRiegoInteractor() {
         return new DetenerRiegoInteractor(riegoPort,tanque,service);
     }
     

@@ -10,12 +10,6 @@ package proyecyo_progra_3.Applicaction.Service;
  */
 public class IniciarSesionInteractor {
     
-    
-    
-    
-    
-    
-    
-    
+
     
 }

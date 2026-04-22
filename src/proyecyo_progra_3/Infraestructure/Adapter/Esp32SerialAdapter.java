@@ -20,7 +20,7 @@ import com.fazecast.jSerialComm.SerialPortEvent;
 import java.util.function.Consumer;
 
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
-import proyecyo_progra_3.Domain.Service.SeguridadHidrica;
+import proyecyo_progra_3.Domain.Ports.Output.SeguridadHidrica;
 
 
 public class Esp32SerialAdapter  {
