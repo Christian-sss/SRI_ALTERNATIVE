@@ -17,32 +17,25 @@ import java.sql.*;
 
 public class MySQLConfig {
     
-    private static final String URL = "";
-    private static final String USER = "";
-    private static final String PASS = "";
-    
-    
-    
+    private static final String URL = "jdbc:mysql://shortline.proxy.rlwy.net:52566/sri_db";
+    private static final String USER = "root";
+    private static final String PASS = "rgnrzZbVeaFeOWCkYmqskSDuQJOKtQdF";
+
+
+
+
     private static Properties propsDB()  {
         
         var props = new Properties();
         
         props.setProperty("user", USER);
         props.setProperty("password", PASS);
-        
 
-        
         return props;
     }
     
     
-    /*
-    Falta implementar con HikariCP y Datasource.
-    
-    */
-    
-   
-    
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL,propsDB());
     }

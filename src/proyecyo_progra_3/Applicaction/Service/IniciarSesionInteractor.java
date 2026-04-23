@@ -4,12 +4,51 @@
  */
 package proyecyo_progra_3.Applicaction.Service;
 
+import java.util.Optional;
+import proyecyo_progra_3.Domain.Model.User;
+import proyecyo_progra_3.Domain.Ports.Input.IniciarSesionUseCase;
+import proyecyo_progra_3.Domain.Ports.Output.UserRepository;
+
 /**
  *
  * @author Usuario
  */
-public class IniciarSesionInteractor {
+public class IniciarSesionInteractor implements IniciarSesionUseCase {
+    
+    private final UserRepository userRepository;
+
+    public IniciarSesionInteractor(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    
     
 
+    @Override
+    public User ejecutar(String username, String passwordIngresada) {
+
+        var user = userRepository
+                .buscarPorUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+
+       
+        try {
+             if (!user.isActivo()) {
+                    throw new Exception("Su cuenta está desactivada.");
+                }
+
+  
+                if (!passwordIngresada.equals(user.getPasswordHash())) {
+                    throw new Exception("Contraseña incorrecta.");
+                }
+             
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        
+      
+                return user;
+
+    }
     
+
 }

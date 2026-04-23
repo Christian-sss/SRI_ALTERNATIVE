@@ -14,8 +14,6 @@ import proyecyo_progra_3.Domain.Model.User;
 public interface UserRepository {
     
     
-    void save();
-    Optional<User> findById(Long id);
-    
+    Optional<User> buscarPorUsername(String username);
     
 }

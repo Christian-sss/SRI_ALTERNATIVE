@@ -18,7 +18,6 @@ import proyecyo_progra_3.Infraestructure.Config.Esp32ConnectionManager;
 public class Esp32SerialRiego implements RiegoPort {
     
 
-     private final int MODO_AUTOMATICO = 2;
     private final Esp32ConnectionManager port;
     
     public Esp32SerialRiego(Esp32ConnectionManager connectionManager) {
@@ -37,10 +36,5 @@ public class Esp32SerialRiego implements RiegoPort {
         }
     }
 
-
-    public void modoAutomatico() {
-        enviarComando(MODO_AUTOMATICO);
-        System.out.println("[JAVA] 🔄 Comando MODO AUTOMÁTICO (2) enviado");
-    }
     
 }

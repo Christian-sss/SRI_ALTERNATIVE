@@ -32,8 +32,7 @@ public class SeguridadHidricaService implements SeguridadHidrica {
             return;
         }
 
-
-        if (tanque.sueloSeco()) {
+        if (tanque.isBombaActiva()) {
             tanque.setEstadoActual(EstadoSistema.REGANDO);
             return;
         }

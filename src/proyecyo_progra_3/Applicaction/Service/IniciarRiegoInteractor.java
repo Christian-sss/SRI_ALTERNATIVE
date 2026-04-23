@@ -8,6 +8,7 @@ import proyecyo_progra_3.Domain.ENUMS.EstadoSistema;
 import proyecyo_progra_3.Domain.Model.TanqueAgua;
 import proyecyo_progra_3.Domain.Ports.Input.IniciarRiegoUseCase;
 
+import proyecyo_progra_3.Domain.Ports.Output.EstadisticasRepository;
 import proyecyo_progra_3.Domain.Ports.Output.RiegoPort;
 import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 
@@ -21,21 +22,29 @@ public class IniciarRiegoInteractor implements IniciarRiegoUseCase {
     private final RiegoPort riegoPort;
     private final TanqueAgua tanque;
 
+    private EstadisticasRepository repository;
+
     public IniciarRiegoInteractor(SistemaRiegoService service,
                                   RiegoPort riegoPort,
-                                  TanqueAgua tanque) {
+                                  TanqueAgua tanque, EstadisticasRepository repository) {
         this.service = service;
         this.riegoPort = riegoPort;
         this.tanque = tanque;
+        this.repository = repository;
     }
+
 
 
     @Override
     public String ejecutar() {
 
         if (tanque.getEstadoActual() == EstadoSistema.BLOQUEADO_SIN_AGUA) {
-            return "ACCIÓN DENEGADA: El tanque no tiene agua suficiente para regar.";
+            return "El tanque no tiene agua suficiente para regar.";
         }
+
+
+        tanque.recordarHumedadInicial();
+
 
         riegoPort.enviarComando(1);
 

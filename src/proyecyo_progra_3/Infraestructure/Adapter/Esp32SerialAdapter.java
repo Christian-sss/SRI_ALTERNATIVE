@@ -92,7 +92,7 @@ public class Esp32SerialAdapter  {
 
             if (!linea.contains(",")) return;
 
-            // Este split es porque recibira datos como:  "45,12"
+            // Este split:  "45,12"
 
             String[] partes = linea.split(",");
 
@@ -107,18 +107,22 @@ public class Esp32SerialAdapter  {
 
             tanque.actualizarDatos(humedad, distancia);
             seguridadHidrica.evaluarEstado(tanque);
+
+
+
+
             // Paa Notificar (UI, logs, etc.)
             if (onDataReceived != null) {
                 onDataReceived.accept(tanque);
             }
 
-            // Debug limpio
+
             System.out.println("[ESP32] H=" + humedad + "% | D=" + distancia + "cm");
 
         } catch (NumberFormatException e) {
-            System.err.println("[ERROR] Número inválido: " + linea);
+            System.err.println("Número inválido: " + linea);
         } catch (Exception e) {
-            System.err.println("[ERROR] Parseando línea: " + linea);
+            System.err.println("Parseando línea: " + linea);
         }
     }
 

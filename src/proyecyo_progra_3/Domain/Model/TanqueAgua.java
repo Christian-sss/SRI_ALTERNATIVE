@@ -12,6 +12,8 @@ public class TanqueAgua {
     private double distancia;
     private boolean bombaActiva;
 
+    private int humedadAlIniciarManual = 0;
+
 
     private static final int HUMEDAD_MIN = 30;
     private static final double UMBRAL_LLENO = 7.0;
@@ -23,6 +25,14 @@ public class TanqueAgua {
         this.humedad = humedad;
         this.distancia = distancia;
     }
+    public void recordarHumedadInicial() {
+        this.humedadAlIniciarManual = this.humedad;
+    }
+    public int getHumedadAlIniciarManual() {
+        return humedad;
+    }
+
+
 
     public boolean sueloSeco() {
         return humedad < HUMEDAD_MIN;

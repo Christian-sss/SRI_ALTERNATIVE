@@ -10,9 +10,7 @@ import proyecyo_progra_3.Domain.Model.User;
  *
  * @author Usuario
  */
-public interface IniciarRiegoUseCase {
-
-    String ejecutar();
+public interface IniciarSesionUseCase {
     
-    
+       User ejecutar(String username, String passwordIngresada);
 }

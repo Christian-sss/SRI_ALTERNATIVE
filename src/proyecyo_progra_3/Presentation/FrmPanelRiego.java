@@ -7,7 +7,7 @@ package proyecyo_progra_3.Presentation;
 import javax.swing.*;
 
 import proyecyo_progra_3.Applicaction.Service.ConectarESP32Interactor;
-import proyecyo_progra_3.Domain.Ports.Input.IniciarRiegoUseCase;
+import proyecyo_progra_3.Domain.Ports.Input.RiegoAutomatizadoUseCase;
 import proyecyo_progra_3.Domain.Service.SistemaRiegoService;
 import proyecyo_progra_3.Infraestructure.Config.ApplicationContainer;
 
@@ -26,7 +26,7 @@ public class FrmPanelRiego extends JFrame {
     private static final Logger logger = Logger.getLogger(FrmPanelRiego.class.getName());
     
     private final ApplicationContainer appContainer = ApplicationContainer.getInstance();
-    private final IniciarRiegoUseCase iniciarRiego = appContainer.getIniciarRiegoInteractor();
+    private final RiegoAutomatizadoUseCase riegoAutomatizado = appContainer.getRiegoAutomatizado();
     private final ConectarESP32Interactor conectarESP32 = appContainer.getConectarESP32Interactor();
 
 
@@ -39,6 +39,8 @@ public class FrmPanelRiego extends JFrame {
     public FrmPanelRiego() {
         initComponents();
 
+        
+        btnIniciarRiegoAutomatico.setEnabled(false);
     }
 
 
@@ -52,20 +54,19 @@ public class FrmPanelRiego extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new JPanel();
-        jLabel1 = new JLabel();
-        jLabel2 = new JLabel();
-        btnIniciarRiegoAutomatico = new JButton();
-        btnVolverMenu = new JButton();
-        jLabel4 = new JLabel();
-        jLabel5 = new JLabel();
-        btnConectar = new JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnIniciarRiegoAutomatico = new javax.swing.JButton();
+        btnVolverMenu = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        btnConectar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Sistema de Riego");
 
-        jLabel2.setText("Iniciar Riego");
+        jLabel2.setText("Iniciar Riego Automatico");
 
         btnIniciarRiegoAutomatico.setText("Iniciar Riego");
         btnIniciarRiegoAutomatico.addActionListener(this::btnIniciarRiegoAutomaticoActionPerformed);
@@ -75,139 +76,117 @@ public class FrmPanelRiego extends JFrame {
 
         jLabel4.setText("Sistema de Riego Automatico");
 
-        jLabel5.setText("Sistema de Riego Manual");
-
         btnConectar.setText("Conectar");
         btnConectar.addActionListener(this::btnConectarActionPerformed);
 
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(btnVolverMenu, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addComponent(btnIniciarRiegoAutomatico, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(btnConectar, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(245, 245, 245)
-                        .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnIniciarRiegoAutomatico, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(287, 287, 287)
+                                .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(292, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIniciarRiegoAutomatico, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
-                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btnConectar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
-                .addGap(193, 193, 193)
-                .addComponent(jLabel5)
-                .addGap(117, 117, 117)
-                .addComponent(btnVolverMenu, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnIniciarRiegoAutomatico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(303, 303, 303)
+                .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIniciarRiegoAutomaticoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnIniciarRiegoAutomaticoActionPerformed
-        // TODO add your handling code here:
+    private void btnIniciarRiegoAutomaticoActionPerformed(ActionEvent evt) {                                                          
+
+        riegoAutomatizado.ejecutar();
+        
+        JOptionPane.showMessageDialog(this, " Resultado");
+        JOptionPane.showMessageDialog(this, " Resultado esta iniciando el riego automatizado");
 
 
         
-    
-/*
-        if (!servicio.estaConectado()) {
-            JOptionPane.showMessageDialog(this, "Conéctese al ESP32 primero");
-            return;
-        }
+    }
 
-        if (!servicio.getTanque().tieneAgua()) {
-            JOptionPane.showMessageDialog(this, "Tanque vacío");
-            return;
-        }
-
-  
-        String resultado = servicio.iniciarRiego();
-        JOptionPane.showMessageDialog(this, resultado);
-        */
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnIniciarRiegoAutomaticoActionPerformed
-
-    private void btnVolverMenuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
+    private void btnVolverMenuActionPerformed(ActionEvent evt) {                                              
         // TODO add your handling code here:}
 
         FrmMenu frm = new FrmMenu();
         frm.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnVolverMenuActionPerformed
+    }
 
     private void btnConectarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
 
 
-        String puerto = JOptionPane.showInputDialog("Indique el puerto:");
+
+        String puerto = JOptionPane.showInputDialog("Indique el puerto (Ej: COM3):");
+
+
+        if (puerto == null || puerto.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Operación cancelada o puerto inválido.");
+            return;
+        }
 
         boolean conectado = conectarESP32.ejecutar(puerto);
 
-        
-        if (puerto == null || puerto.trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar un nombre de puerto válido.");
-                return; 
-        }
-        
         if (!conectado) {
-            JOptionPane.showMessageDialog(this, "Error al conectar");
-            btnIniciarRiegoAutomatico.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "Error: No se pudo abrir el puerto " + puerto + ". Verifica que no esté en uso.");
             return;
         }
+
+        JOptionPane.showMessageDialog(this, "¡Conectado exitosamente al ESP32!");
         
-        
+        JOptionPane.showMessageDialog(this, "¡Conectado exitosamente al ESP32!");
+        btnIniciarRiegoAutomatico.setEnabled(true);
 
 
-        JOptionPane.showMessageDialog(this, "Conectado");
 
     }//GEN-LAST:event_btnConectarActionPerformed
 
@@ -237,13 +216,12 @@ public class FrmPanelRiego extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton btnConectar;
-    private JButton btnIniciarRiegoAutomatico;
-    private JButton btnVolverMenu;
-    private JLabel jLabel1;
-    private JLabel jLabel2;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
-    private JPanel jPanel1;
+    private javax.swing.JButton btnConectar;
+    private javax.swing.JButton btnIniciarRiegoAutomatico;
+    private javax.swing.JButton btnVolverMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
