@@ -17,7 +17,7 @@ import java.sql.*;
 
 public class MySQLConfig {
     
-    private static final String URL = "jdbc:mysql://shortline.proxy.rlwy.net:52566/sri_db";
+    private static final String URL = "jdbc:mysql://shortline.proxy.rlwy.net:52566/railway";
     private static final String USER = "root";
     private static final String PASS = "rgnrzZbVeaFeOWCkYmqskSDuQJOKtQdF";
 
